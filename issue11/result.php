@@ -45,10 +45,18 @@
 <title>BBSの作成</title>
 </head>
 <body>
-    <h3>投稿一覧</h3>
 
-        <p>投稿者名：<?php echo $row['name'];?></p>
-        <p>コメント：<?php echo $row['comment'];?></p>
+    <form action="update.php" method="post">
+        <h3>名前を変更する</h3>
+        <p>変更したい名前</p>
+        <input type="text" name="name-before" size="30" value="" />
+        <p>変更する名前</p>
+        <input type="text" name="name-after" size="30" value="" />
+
+
+        <h3>投稿</h3>
+        <input type="submit" value="登録する" />
+    </form>
 
 
     <p><a href="index.html">トップへ戻る</a></p>

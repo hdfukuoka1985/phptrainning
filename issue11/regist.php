@@ -18,7 +18,9 @@
     $stmt -> execute();
 
 
-    $pdo = null
+    $pdo = null;
+
+    echo '更新完了しました';
 
 
 ?>
