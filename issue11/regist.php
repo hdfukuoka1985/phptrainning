@@ -1,21 +1,25 @@
 <?php
-        try {
-        $pdo = new PDO('mysql:host=localhost;dbname=bbs;charset=utf8','fukuoka2','pass888',
-        array(PDO::ATTR_EMULATE_PREPARES => false));
-        } catch (PDOException $e) {
-         exit('データベース接続失敗。'.$e->getMessage());
-        }
+    // データベース接続
+    $dsn='mysql:host=localhost;dbname=bbs;charset=utf8';
+    $user='fukuoka2';
+    $password='pass888';
+    $pdo=new PDO($dsn,$user,$password);
+    $pdo->query('SET NAMES UTF-8');
 
 
-        $name = $_POST['name'];
-        $comments = $_POST['comments'];
-
-        $stmt = $pdo -> prepare("INSERT INTO topics (name, comments) VALUES (:name, :comments)");
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $stmt->bindParam(':comments', $comments, PDO::PARAM_STR);
+    // 投稿されたデータを変数に入れる
+    $name = $_POST['name'];
+    $comment = $_POST['comment'];
 
 
-        $stmt->execute();
+    // 変数をデータベースに入れる
+    $sql = 'INSERT INTO topics (name,comment) VALUES ("'.$name.'","'.$comment.'")';
+    $stmt =$pdo->prepare($sql);
+    $stmt -> execute();
+
+
+    $pdo = null
+
 
 ?>
 
