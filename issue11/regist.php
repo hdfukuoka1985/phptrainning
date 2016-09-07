@@ -1,19 +1,23 @@
 <?php
     // データベース接続
-    $dsn='mysql:host=localhost;dbname=bbs;charset=utf8';
-    $user='fukuoka2';
-    $password='pass888';
-    $pdo=new PDO($dsn,$user,$password);
-    $pdo->query('SET NAMES UTF-8');
+
+    try {
+    $pdo = new PDO('mysql:host=localhost;dbname=bbs;charset=utf8','fukuoka2','pass888',
+     array(PDO::ATTR_EMULATE_PREPARES => false));
+     } catch (PDOException $e) {
+      exit('データベース接続失敗。'.$e->getMessage());
+     }
+
 
 
     // 投稿されたデータを変数に入れる
     $name = $_POST['name'];
     $comment = $_POST['comment'];
+    $timestamp = date("Y/m/d H:i:s");
 
 
     // 変数をデータベースに入れる
-    $sql = 'INSERT INTO topics (name,comment) VALUES ("'.$name.'","'.$comment.'")';
+    $sql = 'INSERT INTO topics (name,comment,created_at) VALUES ("'.$name.'","'.$comment.'","'.$timestamp.'")';
     $stmt =$pdo->prepare($sql);
     $stmt -> execute();
 

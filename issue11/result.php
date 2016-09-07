@@ -1,10 +1,12 @@
 <?php
     // データベース接続
-    $dsn='mysql:host=localhost;dbname=bbs;charset=utf8';
-    $user='fukuoka2';
-    $password='pass888';
-    $pdo=new PDO($dsn,$user,$password);
-    $pdo->query('SET NAMES UTF-8');
+    try {
+    $pdo = new PDO('mysql:host=localhost;dbname=bbs;charset=utf8','fukuoka2','pass888',
+     array(PDO::ATTR_EMULATE_PREPARES => false));
+     } catch (PDOException $e) {
+      exit('データベース接続失敗。'.$e->getMessage());
+     }
+
 
 
 
@@ -53,8 +55,11 @@
         <p>変更する名前</p>
         <input type="text" name="name-after" size="30" value="" />
 
+        <h3>削除する</h3>
+        <p>削除したいコメントの名前</p>
+        <input type="text" name="name-delete" size="30" value="" />
 
-        <h3>投稿</h3>
+        <h3></h3>
         <input type="submit" value="登録する" />
     </form>
 
