@@ -10,6 +10,8 @@
 
 
     // result.phpから投稿されたデータを変数に入れる
+
+
     $namebefore = $_POST['name-before'];
     $nameafter = $_POST['name-after'];
     $namedelete = $_POST['name-delete'];
@@ -41,5 +43,7 @@
 
 
     <p><a href="index.html">トップへ戻る</a></p>
+    <p><a href="result.php">一覧を見る</a></p>
+
 </body>
 </html>

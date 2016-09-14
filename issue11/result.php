@@ -8,31 +8,13 @@
      }
 
 
-
-
     // データ引き出し
     // SELECT文を変数に格納
-    $sql = 'SELECT name, comment, updated_at FROM topics WHERE 1';
+    $sql = 'SELECT id, name, comment, updated_at FROM topics WHERE 1';
     $stmt = $pdo->prepare($sql);
     $stmt ->execute();
 
 
-
-    while(1)
-    {
-    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($rec==false)
-    {
-        break;
-    }
-    echo '投稿時間：'.$rec['updated_at'];
-    echo ' / ';
-    echo '投稿者：'.$rec['name'];
-    echo '<br>';
-    echo 'コメント：'.$rec['comment'];
-    echo '<br>';
-    echo '<br>';
-    }
 
     // データベース接続解除
     $pdo = null;
@@ -48,20 +30,35 @@
 </head>
 <body>
 
-    <form action="update.php" method="post">
-        <h3>名前を変更する</h3>
-        <p>変更したい名前</p>
-        <input type="text" name="name-before" size="30" value="" />
-        <p>変更する名前</p>
-        <input type="text" name="name-after" size="30" value="" />
+<h3>掲示板</h3>
 
-        <h3>削除する</h3>
-        <p>削除したいコメントの名前</p>
-        <input type="text" name="name-delete" size="30" value="" />
 
-        <h3></h3>
-        <input type="submit" value="登録する" />
-    </form>
+<?php
+    while(1)
+    {
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($rec==false)
+    { break;}
+
+    echo 'ID：'.$rec['id'];
+    echo ' / ';
+    echo '投稿時間：'.$rec['updated_at'];
+    echo ' / ';
+    echo '投稿者：'.$rec['name'];
+    echo '<br>';
+    echo 'コメント：'.$rec['comment'];
+    echo '<br>';
+
+    $array = array('id'=>$rec['id'], 'name'=>$rec['name']);
+
+    echo '<a href="edit.php?' . http_build_query( $array ) . '">編集する</a>';
+    echo '<br>';
+    echo '<a href="delete.php?' . http_build_query( $array ) . '">削除する</a>';
+    echo '<br>';
+    echo '<br>';
+    }
+
+?>
 
 
     <p><a href="index.html">トップへ戻る</a></p>

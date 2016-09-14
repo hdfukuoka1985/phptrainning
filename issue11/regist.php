@@ -9,8 +9,11 @@
     // MySQL ネイティブの静的プレースホルダを使用する
      array(PDO::ATTR_EMULATE_PREPARES => false));
 
-    // 例外クラスをthrowする
+    // // 例外クラスをthrowする
+    // もし$scoreが85以上なら
+    if (false){
     throw new Exception('エラーが発生しました');
+    }
 
 
     // throwされた内容をcatchして処理を実行

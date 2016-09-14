@@ -1,4 +1,3 @@
-
 <?php
     // データベース接続
     try {
@@ -9,29 +8,19 @@
      }
 
 
-    // result.phpから投稿されたデータを変数に入れる
-
-
-    $namebefore = $rec['name-before'];
-    $nameafter = $_POST['name-after'];
-    $namedelete = $_POST['name-delete'];
-
-    // UPDATE文を実行
-    $sql = "UPDATE topics SET name='$nameafter' WHERE name='$namebefore'";
-    $stmt = $pdo->prepare($sql);
-    $stmt ->execute();
-
-    // DELETE文を実行
-    $sql = "DELETE FROM topics WHERE name='$namedelete'";
+    // データ引き出し
+    // SELECT文を変数に格納
+    $sql = 'SELECT id, name, comment, updated_at FROM topics WHERE 1';
     $stmt = $pdo->prepare($sql);
     $stmt ->execute();
 
 
-    // データベースから切断
+
+    // データベース接続解除
     $pdo = null;
-
-
 ?>
+
+
 
 <html>
 <head>
@@ -39,8 +28,24 @@
 <title>BBSの作成</title>
 </head>
 <body>
-    <h3>更新しました。</h3>
 
+<h3>コメントの編集</h3>
+
+<form action="update.php" method="post">
+
+ 
+    <p><?php echo '投稿ID：'.$_GET['id'];?></p>
+
+    <p><?php echo '変更する名前：'.$_GET['name'];?></p>
+    <input type="hidden" name="name-before" value="" />
+
+    <p><?php echo '変更後の名前：';?></p>
+    <input type="text" name="name-after" size="30" value="" />
+
+    <input type="submit" value="変更する" />
+
+
+</form>
 
     <p><a href="index.html">トップへ戻る</a></p>
     <p><a href="result.php">一覧を見る</a></p>
