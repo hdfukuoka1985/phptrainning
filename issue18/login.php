@@ -18,39 +18,27 @@
       exit('データベース接続失敗。'.$e->getMessage());
      }
 
-    // $mysqli = new mysqli("localhost","fukuoka2","pass888","bbs");
-    // $mysqli->set_charset("utf-8");
-    // if ($mysqli -> connect_errno) {
-    //   print('<p>データベースへの接続に失敗しました。</p>' . $mysqli -> connect_error);
-    //   exit();
-    // } 
 
+    // 投稿されたデータを変数に入れる
+    $name = $_POST['username'];
+    $password1 = $_POST['password'];
 
 
 
     // データ引き出し
     // SELECT文を変数に格納
-    $stmt = $pdo->query("SELECT id, name, password FROM login WHERE 1");
+    $stmt = $pdo->query("SELECT password FROM users WHERE name = '$name'");
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-     $id = $row["id"];
-     $name = $row["name"];
-     $password = $row["password"];
-     $db_hashed_pwd = $row['password'];
+
+     $password2 = $row['password'];
+    
     }
 
 
 
 
-    // 投稿されたデータを変数に入れる
-    $name = $_POST['userid'];
-    $password2 = $_POST['password'];
-
-    // パスワードをハッシュ化
-    $hash = password_hash("$password2", PASSWORD_DEFAULT);
-
-
     // パスワードの照合
-    if (password_verify($hash, $db_hashed_pwd)) {
+    if (password_verify($password1, $password2)) {
       // 認証成功なら、セッションIDを新規に発行する
       echo パスワードが認証されました。;
     }
