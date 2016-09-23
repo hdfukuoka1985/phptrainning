@@ -10,15 +10,13 @@
 
 
     // result.phpから投稿されたデータを変数に入れる
-
-
     $id = $_POST['id'];
-    $namebefore = $_POST['name-before'];
-    $nameafter = $_POST['name-after'];
-    $namedelete = $_POST['name-delete'];
 
 
     // DELETE文を実行
+
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
     $sql = "DELETE FROM topics WHERE id='$id'";
     $stmt = $pdo->prepare($sql);
     $stmt ->execute();

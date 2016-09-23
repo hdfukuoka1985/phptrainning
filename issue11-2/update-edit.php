@@ -13,11 +13,12 @@
 
 
     $id = $_POST['id'];
-    $namebefore = $_POST['name-before'];
     $nameafter = $_POST['name-after'];
-    $namedelete = $_POST['name-delete'];
+
 
     // UPDATE文を実行
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    
     $sql = "UPDATE topics SET name='$nameafter' WHERE id='$id'";
     $stmt = $pdo->prepare($sql);
     $stmt ->execute();
