@@ -67,14 +67,11 @@
 ?>
 
 
-<?php while($rec = $stmt->fetch(PDO::FETCH_ASSOC)):
-    if($rec==false)
-    { break;}
-?>
+<?php while($rec = $stmt->fetch(PDO::FETCH_ASSOC)):?>
 
-    <p><?php echo 'ID：'.$rec['id'];?>/<?php echo '投稿時間：'.$rec['updated_at'];?>/<?php echo '投稿者：'.$rec['name'];?></p>
+    <p>ID：<?php echo $rec['id'];?>/投稿時間：<?php echo $rec['updated_at'];?>/投稿者：<?php echo $rec['name'];?></p>
 
-    <p><?php echo 'コメント：'.$rec['comment'];?></p>
+    <p>コメント：<?php echo $rec['comment'];?></p>
 
     <?php $array = array('id'=>$rec['id'], 'name'=>$rec['name']);?>
 

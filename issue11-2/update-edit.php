@@ -18,8 +18,15 @@
 
     // UPDATE文を実行
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    
-    $sql = "UPDATE topics SET name='$nameafter' WHERE id='$id'";
+
+
+    $sql = "UPDATE topics SET name=:nameafter WHERE id=:id";
+
+
+    // パラメータに文字列としてバインド（文字列以外入力できなくする）
+    $stmt->bindParam(':nameafter', $nameafter, PDO::PARAM_STR);
+
+
     $stmt = $pdo->prepare($sql);
     $stmt ->execute();
 
