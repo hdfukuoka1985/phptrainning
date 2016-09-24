@@ -17,17 +17,17 @@
 
 
     // UPDATE文を実行
+    // この文を書くことにより静的プレースホルダを使うことになる
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-
-    $sql = "UPDATE topics SET name=:nameafter WHERE id=:id";
+    // 実行するSQL文を準備
+    $stmt = $pdo -> prepare("UPDATE topics SET name=:nameafter WHERE id='$id'");
 
 
     // パラメータに文字列としてバインド（文字列以外入力できなくする）
     $stmt->bindParam(':nameafter', $nameafter, PDO::PARAM_STR);
 
-
-    $stmt = $pdo->prepare($sql);
+    // 実行する
     $stmt ->execute();
 
    
