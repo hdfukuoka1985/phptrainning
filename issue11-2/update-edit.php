@@ -25,6 +25,7 @@
 
 
     // パラメータに文字列としてバインド（文字列以外入力できなくする）
+    $stmt->bindParam(':id', $id, PDO::PARAM_STR);
     $stmt->bindParam(':nameafter', $nameafter, PDO::PARAM_STR);
 
     // 実行する
