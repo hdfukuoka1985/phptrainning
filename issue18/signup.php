@@ -20,8 +20,8 @@
         <input type="submit" value="新規登録" />
     </form>
 
-    <p><a href="index.php">ログイン</a></p>
-
+    <p><a href="index.html">ログイン</a></p>
+    <p><a href="result.php">一覧</a></p>
   
 </body>
 </html>

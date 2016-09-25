@@ -8,10 +8,6 @@
     // MySQL ネイティブの静的プレースホルダを使用する
      array(PDO::ATTR_EMULATE_PREPARES => false));
 
-    // // 例外クラスをthrowする
-    if (false){
-    throw new Exception('エラーが発生しました');
-    }
 
     // throwされた内容をcatchして処理を実行
      } catch (Exception $e) {
@@ -24,15 +20,20 @@
     $password = $_POST['password'];
     $timestamp = date("Y/m/d H:i:s");
 
-    // 変数をデータベースに入れる
-    $stmt = $pdo -> prepare("INSERT INTO users (name, mail, password, created_at) VALUES (:name, :mail, :password, :timestamp)");
+     // パスワードのハッシュ化
+    $hash = password_hash("$password", PASSWORD_DEFAULT);
 
+
+    // 変数をデータベースに入れる
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $stmt = $pdo -> prepare("INSERT INTO users (name, mail, password, created_at) VALUES (:name, :mail, :hash, :timestamp)");
+    // $stmt = $pdo -> prepare("INSERT INTO users (name, mail, password, created_at) VALUES ('$name', '$mail', '$password', '$timestamp')");
 
     // // パラメータに文字列としてバインド（文字列以外入力できなくする）
-    // $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-    // $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
-    // $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-    // $stmt->bindParam(':timestamp', $comment, PDO::PARAM_STR);
+    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+    $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $stmt->bindParam(':hash', $hash, PDO::PARAM_STR);
+    $stmt->bindParam(':timestamp', $timestamp, PDO::PARAM_STR);
 
     // statementを実行
     $stmt -> execute();
@@ -55,5 +56,6 @@
 <h3>新規登録</h3>
 
     <p><a href="index.html">ログイン</a></p>
+    <p><a href="result.php">一覧</a></p>
 </body>
 </html>
