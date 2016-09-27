@@ -3,6 +3,10 @@ body{
   background-color: #CCF7FF;
 }
 
+.body-inside{
+  width: 100%;
+  background-color: #FFF0F5;
+}
 
 .topbanner{
   width: 100%;
@@ -71,8 +75,8 @@ border:1px solid #cccccc;
 
 
 .job-box{
-  width: 400px;
-  height: auto;
+  width: 450px;
+  height: 220px;
   background-color: #fff;
   border-radius: 20px;
   margin-top: 0px;
@@ -104,8 +108,8 @@ border:1px solid #cccccc;
 }
 
 .job-box img{
-  width: 130px;
-  height: 130px;
+  width: 150px;
+  height: 150px;
   border-radius: 10px;
 }
 
@@ -115,9 +119,98 @@ border:1px solid #cccccc;
 
 
 .job-info{
-  width: 250px;
+  width: 270px;
   margin-left: 10px;
 }
+
+.job-info-inside{
+  height: 150px;
+}
+
+
+
+/*========================管理者ページ=======================*/
+
+.body-inside{
+  width: 100%;
+  background-color: #FFF0F5;
+}
+
+.topbanner-admin{
+  width: 100%;
+  height:400px;
+  background-image: url(images/topbanner-2.jpg);
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+}
+
+.topbanner-admin h1{
+  color: #1F3A8C;
+  font-family: HiraMinProN-W6;
+  font-size: 100px;
+  padding-top: 12%;
+  text-align: center;
+  margin: 0;
+  text-shadow: -7px -3px 20px #FFF;
+}
+
+
+
+.job-box-admin{
+  width: 450px;
+  height: 260px;
+  background-color: #fff;
+  border-radius: 20px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  padding-bottom: 15px;
+
+
+  /* box-shadow */
+  box-shadow:0px 0px 6px 3px #56a3eb;
+  -moz-box-shadow:0px 0px 6px 3px #56a3eb;
+  -webkit-box-shadow:0px 0px 6px 3px #56a3eb;
+
+  /* border-radius */
+  border-radius:6px;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+
+  /* border */
+  border:1px solid #cccccc;
+  }
+
+
+
+
+.job-box-admin h6{
+  text-align: center;
+  font-size: 18px;
+}
+
+.job-box-admin img{
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.job-box-admin p{
+  margin: 1px;
+}
+
+
+.job-info-admin{
+  width: 270px;
+  margin-left: 10px;
+}
+
+.job-info-inside-admin{
+  height: 150px;
+}
+
+
 
 
 .admin-btn li{
@@ -154,6 +247,7 @@ border:1px solid #cccccc;
   background-color: gray;
   padding: 5px 20px;
   border-radius: 3px;
+  text-align: center;
 }
 
 .admin-menu a{
@@ -164,6 +258,9 @@ border:1px solid #cccccc;
   color: red;
   text-decoration: none;
 }
+
+
+/*========================管理者ページ=======================*/
 
 .footer{
   width: 100%;
@@ -196,13 +293,6 @@ border:1px solid #cccccc;
 .job-register{
   margin-left: 50px;
 }
-
-
-
-
-
-
-
 
 
 

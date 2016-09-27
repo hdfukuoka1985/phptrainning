@@ -63,7 +63,7 @@
                             <li><a href="#">旅行・ガイド</a></li>
                             <li><a href="#">農業・漁業</a></li>
                              <li><a href="#">事務系</a></li>
-                            <li><a href="signin.php">会員登録・ログイン</a></li>
+                            <li><a href="signin.php">ログイン</a></li>
                             <li><a href="#">お問い合わせ</a></li>
                         </ul>
                     </div>
@@ -77,15 +77,17 @@
                                         <div class="row job-box">
                                             <h6><?php echo $rec['job_name'];?></h6>
                                                 <div class="col-md-4 job-photo">
-                                                    <img src="images/job1.jpg" alt="">
+                                                    <img src="images/<?php echo $rec['image'];?>" alt="">
                                                 </div>
                                                 <div class="col-md-8 job-info">
-                                                    <p>掲載日時：<?php echo $rec['updated_at'];?></p>
-                                                    <p>分類：<?php echo $rec['job_type'];?></p>
-                                                    <p>給与：<?php echo $rec['salary'];?></p>
-                                                    <p>勤務時間：<?php echo $rec['work_time'];?></p>
-                                                    <p>連絡先：<?php echo $rec['contact'];?></p>
-                                                    <p><?php echo $rec['comment'];?></p>
+                                                    <div class="job-info-inside">
+                                                        <p>掲載日時：<?php echo $rec['updated_at'];?></p>
+                                                        <p>分類：<?php echo $rec['job_type'];?></p>
+                                                        <p>給与：<?php echo $rec['salary'];?></p>
+                                                        <p>勤務時間：<?php echo $rec['work_time'];?></p>
+                                                        <p>連絡先：<?php echo $rec['contact'];?></p>
+                                                        <p><?php echo $rec['comment'];?></p>
+                                                    </div>
                                                 </div>
 
                                         </div><!-- job-box -->

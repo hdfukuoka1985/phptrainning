@@ -27,24 +27,29 @@
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
 
     $password2 = $row['password'];
-    
+
     }
 
-
-
+    session_start();
 
     // パスワードの照合
     if ($password1 == $password2) {
-      // 認証成功なら、job-register.phpへ移動
+
+      // ログインが成功した証をセッションに保存
       session_regenerate_id(true);
-      $_SESSION["USERID"] = $_POST["userid"];
-      header("Location: job-register.php");
+      $_SESSION["USERMAIL"] = $_POST["postmail"];
+
+      // 認証成功なら、管理者画面（a-index.php）へ移動
+      header("Location: a-index.php");
       exit;
     }
     else {
       // 不一致
-      echo パスワードが正しくありません。;
+      echo メールアドレスもしくはパスワードが正しくありません。;
     }
+
+    
+
 
 
 ?>

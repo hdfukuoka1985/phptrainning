@@ -1,3 +1,18 @@
+<?php
+
+    // ログイン状態の確認
+    session_start();
+
+    // ログイン状態のチェック($_SESSION["USERID"]は存在しているか)
+    if (!isset($_SESSION["USERMAIL"])) {
+
+    // セッションIDが存在しない場合はログイン失敗画面へ
+    header("Location: login-failed.php");
+    exit;
+    } 
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">

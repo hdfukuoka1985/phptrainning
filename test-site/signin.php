@@ -31,7 +31,7 @@
             <input type="text" name="postpass" size="30" value="" />
 
 
-            <h3>/h3>
+            <h3></h3>
             <input type="submit" value="ログイン" />
         </form>
 

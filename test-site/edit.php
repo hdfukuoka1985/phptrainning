@@ -54,8 +54,12 @@
     <input type="text" name="contact-update" value="<?php echo $_GET['contact'];?>" size="50" />
 
     <h3>アピールポイント</h3>
-    <textarea rows="6" name="comment-update" style="width: 300px" value="<?php echo $_GET['comment'];?>">
+    <textarea rows="6" name="comment-update" style="width: 300px" >
+    <?php echo $_GET['comment'];?>
     </textarea>
+
+    <h3>イメージ画像</h3>
+    <input type="file" name="image-update" value="<?php echo $_GET['image'];?>" >
 
     <h3></h3>
     <input type="submit" value="変更する" />

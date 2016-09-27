@@ -21,6 +21,21 @@
 
     // データベース接続解除
     $pdo = null;
+
+
+    // ログイン状態の確認
+    session_start();
+
+    // ログイン状態のチェック($_SESSION["USERID"]は存在しているか)
+    if (!isset($_SESSION["USERMAIL"])) {
+
+    // セッションIDが存在しない場合はログイン失敗画面へ
+    header("Location: login-failed.php");
+    exit;
+    }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -45,10 +60,11 @@
     <![endif]-->
   </head>
   <body>
+  <div class="body-inside">
 
     <div class="header">
-        <div class="topbanner">
-            <h1>石垣島で働こう！</h1>
+        <div class="topbanner-admin">
+            <h1>管理者画面</h1>
         </div>
     </div>
 
@@ -63,7 +79,8 @@
                             <li><a href="#">旅行・ガイド</a></li>
                             <li><a href="#">農業・漁業</a></li>
                              <li><a href="#">事務系</a></li>
-                            <li><a href="signin.php">会員登録・ログイン</a></li>
+                            <li><a href="logout.php">ログアウト</a></li>
+                            <li><a href="job-register.php">仕事登録</a></li>
                             <li><a href="#">お問い合わせ</a></li>
                         </ul>
                     </div>
@@ -74,19 +91,20 @@
 
                                 <?php while($rec = $stmt->fetch(PDO::FETCH_ASSOC)) :?>
                                 <div class="col-md-6">
-                                        <div class="row job-box">
+                                        <div class="row job-box-admin">
                                             <h6><?php echo $rec['job_name'];?></h6>
                                                 <div class="col-md-4 job-photo">
-                                                    <img src="images/job1.jpg" alt="">
+                                                    <img src="images/<?php echo $rec['image'];?>" alt="">
                                                 </div>
-                                                <div class="col-md-8 job-info">
-                                                    <p>掲載日時：<?php echo $rec['updated_at'];?></p>
-                                                    <p>分類：<?php echo $rec['job_type'];?></p>
-                                                    <p>給与：<?php echo $rec['salary'];?></p>
-                                                    <p>勤務時間：<?php echo $rec['work_time'];?></p>
-                                                    <p>連絡先：<?php echo $rec['contact'];?></p>
-                                                    <p><?php echo $rec['comment'];?></p>
-                                                
+                                                <div class="col-md-8 job-info-admin">
+                                                    <div class="job-info-inside-admin">
+                                                        <p>掲載日時：<?php echo $rec['updated_at'];?></p>
+                                                        <p>分類：<?php echo $rec['job_type'];?></p>
+                                                        <p>給与：<?php echo $rec['salary'];?></p>
+                                                        <p>勤務時間：<?php echo $rec['work_time'];?></p>
+                                                        <p>連絡先：<?php echo $rec['contact'];?></p>
+                                                        <p><?php echo $rec['comment'];?></p>
+                                                    </div>
                                                     <div class="admin-btn">
                                                         <ul>
                                                         <?php 
@@ -94,7 +112,7 @@
                                                         $jobtype = $rec['job_type'];
                                                         $worktime = $rec['work_time'];
 
-                                                        $array = array('id'=>$rec['id'], 'jobname'=>$jobname, 'jobtype'=>$jobtype,'worktime'=>$worktime, 'salary'=>$rec['salary'], 'contact'=>$rec['contact'], 'comment'=>$rec['comment']);?>
+                                                        $array = array('id'=>$rec['id'], 'jobname'=>$jobname, 'jobtype'=>$jobtype,'worktime'=>$worktime, 'salary'=>$rec['salary'], 'contact'=>$rec['contact'], 'comment'=>$rec['comment'], 'image'=>$rec['image']);?>
                                                         <li><p><?php echo '<a href="edit.php?' . http_build_query( $array ) . '">編集する</a>';?></li>
                                                         <li><?php echo '<a href="delete.php?' . http_build_query( $array ) . '">削除する</a>';?></li>
                                                         </ul>
@@ -125,5 +143,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    </div><!-- body-inside -->
   </body>
 </html>
